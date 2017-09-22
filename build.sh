@@ -358,7 +358,6 @@ if [ $BUILD_WINDOWS_ZIP -eq 1 ]; then
     cp -p doc/macroprocessor/macroprocessor.pdf $ZIPDIR/doc
     cp -p doc/parallel/parallel.pdf $ZIPDIR/doc
     cp -p doc/preprocessor/preprocessor.pdf $ZIPDIR/doc
-    cp -p doc/userguide/UserGuide.pdf $ZIPDIR/doc
     cp -p doc/gsa/gsa.pdf $ZIPDIR/doc
     cp -p dynare++/doc/dynare++-tutorial.pdf $ZIPDIR/doc/dynare++
     cp -p dynare++/doc/dynare++-ramsey.pdf $ZIPDIR/doc/dynare++
