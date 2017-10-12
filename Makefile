@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-.PHONY: libs build clean-libs install
+.PHONY: libs build clean-libs install k-order-fix-data
 
 NTHREADS=$(shell echo `nproc --all`)
 
@@ -50,14 +50,15 @@ build-clean:
 
 
 cleanall: clean-libs clean
+	rm -r oldies
 
 install:
 	./install-packages.sh
 
-build:
+build: libs k-order-fix-data
 	./build.sh
 
-push: libs signature/osslsigncode dynare-object-signing.p12 keys/snapshot-manager_rsa.pub m2html/Contents.m
+push: libs k-order-fix-data signature/osslsigncode dynare-object-signing.p12 keys/snapshot-manager_rsa.pub m2html/Contents.m
 	./build.sh
 
 signature/osslsigncode:
@@ -92,3 +93,10 @@ m2html/Contents.m: m2html.zip
 	mkdir -p m2html
 	unzip m2html
 	touch m2html/Contents.m
+
+k-order-fix-data: oldies/matlab-dll/4.4.3/archives.tar.xz
+
+oldies/matlab-dll/4.4.3/archives.tar.xz:
+	mkdir -p oldies/matlab-dll/4.4.3
+	cd oldies/matlab-dll/4.4.3 && wget https://dynare.adjemian.eu/oldies/matlab-dll/4.4.3/archives.tar.xz
+	cd oldies/matlab-dll/4.4.3 && tar xJf archives.tar.xz

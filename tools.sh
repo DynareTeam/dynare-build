@@ -148,6 +148,10 @@ build_windows_matlab_mex_32 () {
     i686-w64-mingw32-strip mex/matlab/*.mexw32
     mkdir -p mex/matlab/win32-7.5-8.6
     mv mex/matlab/*.mexw32 mex/matlab/win32-7.5-8.6
+    if [ $NASTY_FIX_FOR_K_ORDER -eq 1 ]; then
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win32-7.5-8.3/k_order_perturbation.mexw32 mex/matlab/win32-7.5-8.6
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win32-7.5-8.3/dynare_simul_.mexw32 mex/matlab/win32-7.5-8.6
+    fi
     movedir mex/matlab/win32-7.5-8.6 $THIS_BUILD_DIRECTORY/mex/matlab
     cd $ROOT_DIRECTORY
     rm -rf $TMP_DIRECTORY/$VERSION-matlab-win32
@@ -173,6 +177,10 @@ build_windows_matlab_mex_64_a () {
     x86_64-w64-mingw32-strip mex/matlab/*.mexw64
     mkdir -p mex/matlab/win64-7.5-7.7
     mv mex/matlab/*.mexw64 mex/matlab/win64-7.5-7.7
+    if [ $NASTY_FIX_FOR_K_ORDER -eq 1 ]; then
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.5-7.7/k_order_perturbation.mexw64 mex/matlab/win64-7.5-7.7
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.5-7.7/dynare_simul_.mexw64 mex/matlab/win64-7.5-7.7
+    fi
     movedir mex/matlab/win64-7.5-7.7 $THIS_BUILD_DIRECTORY/mex/matlab
     cd $ROOT_DIRECTORY
     rm -rf $TMP_DIRECTORY/$VERSION-matlab-win64-a
@@ -198,6 +206,10 @@ build_windows_matlab_mex_64_b () {
     x86_64-w64-mingw32-strip mex/matlab/*.mexw64
     mkdir -p mex/matlab/win64-7.8-9.2
     mv mex/matlab/*.mexw64 mex/matlab/win64-7.8-9.2
+    if [ $NASTY_FIX_FOR_K_ORDER -eq 1 ]; then
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.8-8.3/k_order_perturbation.mexw64 mex/matlab/win64-7.8-9.2
+	mv $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.8-8.3/dynare_simul_.mexw64 mex/matlab/win64-7.8-9.2
+    fi
     movedir mex/matlab/win64-7.8-9.2 $THIS_BUILD_DIRECTORY/mex/matlab
     cd $ROOT_DIRECTORY
     rm -r $TMP_DIRECTORY/$VERSION-matlab-win64-b
