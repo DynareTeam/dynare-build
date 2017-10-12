@@ -50,7 +50,7 @@ build-clean:
 
 
 cleanall: clean-libs clean
-	rm -r oldies
+	rm -rf oldies
 
 install:
 	./install-packages.sh
