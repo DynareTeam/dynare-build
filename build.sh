@@ -52,6 +52,9 @@ ROOT_DIRECTORY=`dirname $THISSCRIPT`
 FORCE_BUILD=0
 SIGN_DYNARE=0
 
+# Use temporary fix for k-order dlls
+NASTY_FIX_FOR_K_ORDER=1
+
 # Set the number of threads
 NTHREADS=`nproc --all`
 
@@ -275,6 +278,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     export LIB64
     export VERSION
     export DYNARE_VERSION
+    export NASTY_FIX_FOR_K_ORDER
     export NTHREADS
     export -f movedir
     export -f build_windows_matlab_mex_32
