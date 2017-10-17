@@ -231,6 +231,9 @@ fi
 if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     # Go to the build directory
     cd $THIS_BUILD_DIRECTORY
+    # Adapt mjdgges' Makekefile.am for stretch
+    sed -i '1i mjdgges_CFLAGS=$(AM_CFLAGS) -include stdint.h -Dchar16_t=uint16_t' mex/build/matlab/mjdgges/Makefile.am
+    sed -i '1i mjdgges_CFLAGS=$(AM_CFLAGS) -include stdint.h -Dchar16_t=uint16_t' mex/build/octave/mjdgges/Makefile.am
     # Create Windows binaries of preprocessor (32bit version), Dynare++ and documentation
     ./configure --host=i686-w64-mingw32 \
 		--with-boost=$LIB32/Boost \
