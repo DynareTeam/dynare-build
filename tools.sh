@@ -202,12 +202,12 @@ build_windows_matlab_mex_64_b () {
     make -j$NTHREADS all
     cd $TMP_DIRECTORY/$VERSION-matlab-win64-b/
     x86_64-w64-mingw32-strip mex/matlab/*.mexw64
-    mkdir -p mex/matlab/win64-7.8-9.2
-    mv mex/matlab/*.mexw64 mex/matlab/win64-7.8-9.2
+    mkdir -p mex/matlab/win64-7.8-9.3
+    mv mex/matlab/*.mexw64 mex/matlab/win64-7.8-9.3
     if [ $NASTY_FIX_FOR_K_ORDER -eq 1 ]; then
-	cp $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.8-8.3/k_order_perturbation.mexw64 mex/matlab/win64-7.8-9.2
+	cp $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.8-8.3/k_order_perturbation.mexw64 mex/matlab/win64-7.8-9.3
     fi
-    movedir mex/matlab/win64-7.8-9.2 $THIS_BUILD_DIRECTORY/mex/matlab
+    movedir mex/matlab/win64-7.8-9.3 $THIS_BUILD_DIRECTORY/mex/matlab
     cd $ROOT_DIRECTORY
     rm -r $TMP_DIRECTORY/$VERSION-matlab-win64-b
 }
