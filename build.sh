@@ -76,6 +76,11 @@ else
     N_SNAPSHOTS_TO_KEEP=5
 fi
 
+# By default use snapshot-manager ssh key
+if [ ! -v USE_SNAPSHOT_MANAGER_KEY]; then
+   USE_SNAPSHOT_MANAGER_KEY=1
+fi
+
 # Set Date
 DATE=`date --rfc-3339=date`
 
@@ -391,7 +396,9 @@ if [ -f "$ROOT_DIRECTORY/impossible-to-push-dynare" ]; then
     exit 0
 else
     SNAPSHOT_MANAGER_KEY="ssh -i $ROOT_DIRECTORY/keys/snapshot-manager_rsa"
-    export RSYNC_RSH=$SNAPSHOT_MANAGER_KEY
+    if [ $USE_SNAPSHOT_MANAGER_KEY -q 1 ]; then
+	export RSYNC_RSH=$SNAPSHOT_MANAGER_KEY
+    fi
 fi
 
 if [ -v BUILD_INTERNAL_DOC -a $BUILD_INTERNAL_DOC -eq 1 ]; then
