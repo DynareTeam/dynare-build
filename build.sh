@@ -77,7 +77,7 @@ else
 fi
 
 # By default use snapshot-manager ssh key
-if [ ! -v USE_SNAPSHOT_MANAGER_KEY]; then
+if [ ! -v USE_SNAPSHOT_MANAGER_KEY ]; then
    USE_SNAPSHOT_MANAGER_KEY=1
 fi
 
