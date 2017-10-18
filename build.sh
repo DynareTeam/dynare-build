@@ -396,7 +396,7 @@ if [ -f "$ROOT_DIRECTORY/impossible-to-push-dynare" ]; then
     exit 0
 else
     SNAPSHOT_MANAGER_KEY="ssh -i $ROOT_DIRECTORY/keys/snapshot-manager_rsa"
-    if [ $USE_SNAPSHOT_MANAGER_KEY -q 1 ]; then
+    if [ $USE_SNAPSHOT_MANAGER_KEY -eq 1 ]; then
 	export RSYNC_RSH=$SNAPSHOT_MANAGER_KEY
     fi
 fi
