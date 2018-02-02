@@ -5,7 +5,7 @@
 # The binaries are cross compiled for windows (32/64bits), octave 4.2.0 and matlab (all
 # versions since R2007b). The build chain has been tested on debian Jessie.
 #
-# (C) DynareTeam 2017
+# (C) DynareTeam 2017-2018
 #
 # This file is part of dynare-build project. Sources are available at:
 #
@@ -422,7 +422,7 @@ fi
 if [ -v PUSH_SNAPSHOT_SRC ]; then
     if [ $PUSH_SNAPSHOT_SRC -eq 1 ]; then
 	if [ -v REMOTE_USER -a -v REMOTE_SERVER -a -v REMOTE_PATH -a -v REMOTE_SNAPSHOT_NAME ]; then
-	    rsync -v -r -t -a --delete $ROOT_DIRECTORY/tar/ $REMOTE_USER@$REMOTE_SERVER:${REMOTE_PATH}${REMOTE_SNAPSHOT_NAME}/source/
+	    rsync -v -r -t -a --delete $ROOT_DIRECTORY/tar/ $REMOTE_USER@$REMOTE_SERVER:${REMOTE_PATH}$REMOTE_SNAPSHOT_NAME/source/
 	else
 	    echo "Could not push source tarball!"
 	    echo "Please set REMOTE_USER, REMOTE_DIRECTORY and REMOTE_PATH in configuration file."
