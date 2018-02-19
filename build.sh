@@ -244,7 +244,10 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     make clean
     make -j$NTHREADS -C doc pdf html
     make -j$NTHREADS -C dynare++ pdf
-    make -j$NTHREADS all
+    make -j$NTHREADS -C dynare++
+    make -j$NTHREADS -C preprocessor
+    mkdir matlab/preprocessor32
+    mv preprocessor/src/dynare_m.exe matlab/preprocessor32
     i686-w64-mingw32-strip matlab/preprocessor32/dynare_m.exe
     i686-w64-mingw32-strip dynare++/src/dynare++.exe
     # Make 64-bit preprocessor
@@ -258,10 +261,10 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
 		PACKAGE_VERSION=$DYNARE_VERSION \
 		PACKAGE_STRING="$VERSION"
     make -C preprocessor clean
-    make -C preprocessor -j$NTHREADS all
+    make -j$NTHREADS -C preprocessor
+    mkdir matlab/preprocessor64
+    mv preprocessor/src/dynare_m.exe matlab/preprocessor64
     x86_64-w64-mingw32-strip matlab/preprocessor64/dynare_m.exe
-    mkdir matlab/preprocessor32
-    mv dynare_m.exe matlab/preprocessor32/
     # Cleanup mex folders under build directory
     rm -f mex/matlab/*.mexw32 mex/matlab/*.mexw64 mex/matlab/*.dll mex/octave/*.mex mex/octave32/*.mex
     # Go to ROOT_DIRECTORY
