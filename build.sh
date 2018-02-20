@@ -243,6 +243,11 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
 		PACKAGE_STRING="$VERSION"
     make clean
     make -j$NTHREADS -C doc pdf html
+    make -j$NTHREADS -C preprocessor pdf
+    mkdir -p doc/macroprocessor
+    mkdir -p doc/preprocessor
+    cp preprocessor/doc/macroprocessor/macroprocessor.pdf doc/macroprocessor
+    cp preprocessor/doc/preprocessor/preprocessor.pdf doc/preprocessor
     make -j$NTHREADS -C dynare++ pdf
     make -j$NTHREADS -C dynare++
     make -j$NTHREADS -C preprocessor
