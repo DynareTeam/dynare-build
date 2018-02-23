@@ -251,7 +251,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     make -j$NTHREADS -C dynare++ pdf
     make -j$NTHREADS -C dynare++
     make -j$NTHREADS -C preprocessor
-    mkdir matlab/preprocessor32
+    mkdir -p matlab/preprocessor32
     mv preprocessor/src/dynare_m.exe matlab/preprocessor32
     i686-w64-mingw32-strip matlab/preprocessor32/dynare_m.exe
     i686-w64-mingw32-strip dynare++/src/dynare++.exe
@@ -267,7 +267,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
 		PACKAGE_STRING="$VERSION"
     make -C preprocessor clean
     make -j$NTHREADS -C preprocessor
-    mkdir matlab/preprocessor64
+    mkdir -p matlab/preprocessor64
     mv preprocessor/src/dynare_m.exe matlab/preprocessor64
     x86_64-w64-mingw32-strip matlab/preprocessor64/dynare_m.exe
     # Cleanup mex folders under build directory
