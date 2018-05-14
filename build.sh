@@ -90,7 +90,7 @@ SHORT_SHA=`echo $LAST_HASH | cut -c1-7`
 
 
 # Get Dynare version (sets value returned by matlab/dynare_version.m)
-if [ -n "DYNARE_VERSION" ]
+if [ -n "$DYNARE_VERSION" ]
 then
     if [[ $DYNARE_VERSION == *"unstable"* ]]
     then
