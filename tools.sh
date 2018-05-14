@@ -212,6 +212,34 @@ build_windows_matlab_mex_64_b () {
     rm -r $TMP_DIRECTORY/$VERSION-matlab-win64-b
 }
 
+build_windows_matlab_mex_64_c () {
+    # Create Windows 64-bit DLL binaries for MATLAB R2018a
+    mkdir -p $TMP_DIRECTORY/$VERSION-matlab-win64-c
+    cp -r $THIS_BUILD_DIRECTORY/* $TMP_DIRECTORY/$VERSION-matlab-win64-c
+    cd $TMP_DIRECTORY/$VERSION-matlab-win64-c/mex/build/matlab
+    ./configure --host=x86_64-w64-mingw32 \
+		--with-boost=$LIB64/Boost \
+		--with-gsl=$LIB64/Gsl \
+		--with-matio=$LIB64/matIO \
+		--with-slicot=$LIB64/Slicot/without-underscore \
+		--with-matlab=$LIB64/matlab/R2018a \
+		MATLAB_VERSION=R2018a \
+		MEXEXT=mexw64 \
+		PACKAGE_VERSION=$DYNARE_VERSION \
+		PACKAGE_STRING="dynare $VERSION"
+    make -j$NTHREADS all
+    cd $TMP_DIRECTORY/$VERSION-matlab-win64-c/
+    x86_64-w64-mingw32-strip mex/matlab/*.mexw64
+    mkdir -p mex/matlab/win64-9.4
+    mv mex/matlab/*.mexw64 mex/matlab/win64-9.4
+    if [ $NASTY_FIX_FOR_K_ORDER -eq 1 ]; then
+	cp $ROOT_DIRECTORY/oldies/matlab-dll/4.4.3/win64-7.8-8.3/k_order_perturbation.mexw64 mex/matlab/win64-9.4
+    fi
+    movedir mex/matlab/win64-9.4 $THIS_BUILD_DIRECTORY/mex/matlab
+    cd $ROOT_DIRECTORY
+    rm -r $TMP_DIRECTORY/$VERSION-matlab-win64-c
+}
+
 build_windows_octave_mex_32 () {
     # Create Windows DLL binaries for Octave/MinGW (32bit)
     mkdir -p $TMP_DIRECTORY/$VERSION-octave-32
