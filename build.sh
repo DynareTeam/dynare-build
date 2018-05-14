@@ -253,7 +253,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
 		--with-boost=$LIB64/Boost \
 		--with-blas=$LIB64/OpenBLAS/libopenblas.a \
 		--with-lapack=$LIB64/Lapack/liblapack.a \
-		--with-matio=$LIB64_DIR/matio \
+		--with-matio=$LIB64/matIO \
 		--disable-octave --disable-matlab \
 		PACKAGE_VERSION=$DYNARE_VERSION \
 		PACKAGE_STRING="$VERSION"
