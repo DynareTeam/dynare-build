@@ -293,7 +293,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     export -f build_windows_octave_mex_32
     export -f build_windows_octave_mex_64
     # Build all the mex files (parallel).
-    parallel --env _ ::: build_windows_matlab_mex_32 build_windows_matlab_mex_64_a build_windows_matlab_mex_64_b build_windows_matlab_mex_64_c build_windows_octave_mex_32 build_windows_octave_mex_64
+    parallel --env _ "set -ex;" ::: build_windows_matlab_mex_32 build_windows_matlab_mex_64_a build_windows_matlab_mex_64_b build_windows_matlab_mex_64_c build_windows_octave_mex_32 build_windows_octave_mex_64
     # Create Windows installer
     cd $THIS_BUILD_DIRECTORY/windows
     cp -p $ROOT_DIRECTORY/libs/lib32/*.dll $THIS_BUILD_DIRECTORY/dynare++ # The windows installer also distributes the dll for dynare++
