@@ -249,7 +249,7 @@ build_windows_octave_mex_32 () {
     make -j$NTHREADS all
     cd $TMP_DIRECTORY/$VERSION-octave-32/
     rm -rf mex/octave/octave
-    i686-w64-mingw32-strip mex/octave/*.mex
+    i686-w64-mingw32-strip mex/octave/*
     mkdir -p $THIS_BUILD_DIRECTORY/mex/octave32
     mv mex/octave/* $THIS_BUILD_DIRECTORY/mex/octave32
     cd $ROOT_DIRECTORY
@@ -265,7 +265,7 @@ build_windows_octave_mex_64 () {
     make -j$NTHREADS all
     cd $TMP_DIRECTORY/$VERSION-octave-64/
     rm -rf mex/octave/octave
-    x86_64-w64-mingw32-strip mex/octave/*.mex
+    x86_64-w64-mingw32-strip mex/octave/*
     mv mex/octave/* $THIS_BUILD_DIRECTORY/mex/octave
     cd $ROOT_DIRECTORY
     rm -rf $TMP_DIRECTORY/$VERSION-octave-64
