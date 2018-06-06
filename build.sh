@@ -294,6 +294,11 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     export -f build_windows_octave_mex_64
     # Build all the mex files (parallel).
     parallel --env _ "set -ex;" ::: build_windows_matlab_mex_32 build_windows_matlab_mex_64_a build_windows_matlab_mex_64_b build_windows_matlab_mex_64_c build_windows_octave_mex_32 build_windows_octave_mex_64
+    # Add supported_octave_version.m (see matlab/dynare.m)
+    read OCTAVE_VERSION < $ROOT_DIRECTORY/libs/versions/octave.version
+    [[ $OCTAVE_VERSION =~ OCTAVE_VERSION[[:space:]]*=[[:space:]]*([^[:space:]]+) ]]
+    OCTAVE_VERSION=${BASH_REMATCH[1]}
+    echo -e "function v = supported_octave_version\nv=\"${OCTAVE_VERSION}\";\nend" > $THIS_BUILD_DIRECTORY/matlab/supported_octave_version.m
     # Create Windows installer
     cd $THIS_BUILD_DIRECTORY/windows
     cp -p $ROOT_DIRECTORY/libs/lib32/*.dll $THIS_BUILD_DIRECTORY/dynare++ # The windows installer also distributes the dll for dynare++
