@@ -235,7 +235,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     ./configure --host=i686-w64-mingw32 \
 		--with-boost=$LIB32/Boost \
 		--with-blas=$LIB32/OpenBLAS/libopenblas.a \
-		--with-lapack=$LIB32/Lapack/liblapack.a \
+		--with-lapack=$LIB32/OpenBLAS/libopenblas.a \
 		--with-matio=$LIB32/matIO \
 		--disable-octave \
 		--disable-matlab \
@@ -260,7 +260,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     ./configure --host=x86_64-w64-mingw32 \
 		--with-boost=$LIB64/Boost \
 		--with-blas=$LIB64/OpenBLAS/libopenblas.a \
-		--with-lapack=$LIB64/Lapack/liblapack.a \
+		--with-lapack=$LIB64/OpenBLAS/libopenblas.a \
 		--with-matio=$LIB64/matIO \
 		--disable-octave --disable-matlab \
 		PACKAGE_VERSION=$DYNARE_VERSION \
