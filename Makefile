@@ -58,17 +58,8 @@ install:
 build: libs k-order-fix-data
 	./build.sh
 
-push: libs k-order-fix-data signature/osslsigncode dynare-object-signing.p12 keys/snapshot-manager_rsa.pub m2html/Contents.m
+push: libs k-order-fix-data dynare-object-signing.p12 keys/snapshot-manager_rsa.pub m2html/Contents.m
 	./build.sh
-
-signature/osslsigncode:
-	rm -rf signature/source
-	git clone git://git.code.sf.net/p/osslsigncode/osslsigncode signature/source
-	cd signature/source && git reset --hard e72a1937d1a13e87074e4584f012f13e03fc1d64 && ./autogen.sh && ./configure && make 
-	mv signature/source/osslsigncode signature/osslsigncode
-
-clean-osslsigncode:
-	rm -rf signature/*
 
 dynare-object-signing.p12.gpg:
 	wget http://www.dynare.org/dynare-build/dynare-object-signing.p12.gpg
