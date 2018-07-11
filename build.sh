@@ -304,7 +304,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     cp -p $ROOT_DIRECTORY/libs/lib32/*.dll $THIS_BUILD_DIRECTORY/dynare++ # The windows installer also distributes the dll for dynare++
     makensis dynare.nsi
     if [ $SIGN_DYNARE -eq 1 -a ! -f "$ROOT_DIRECTORY/impossible-to-sign-dynare" ]; then
-        $ROOT_DIRECTORY/signature/osslsigncode sign -pkcs12 $ROOT_DIRECTORY/dynare-object-signing.p12 -n Dynare -i http://www.dynare.org -in dynare-$DYNARE_VERSION-win.exe -out dynare-$DYNARE_VERSION-win-signed.exe
+        osslsigncode sign -pkcs12 $ROOT_DIRECTORY/dynare-object-signing.p12 -n Dynare -i http://www.dynare.org -in dynare-$DYNARE_VERSION-win.exe -out dynare-$DYNARE_VERSION-win-signed.exe
         rm dynare-$DYNARE_VERSION-win.exe
         mv dynare-$DYNARE_VERSION-win-signed.exe $ROOT_DIRECTORY/win/$WINDOWS_EXE_NAME
     else
