@@ -276,7 +276,7 @@ if [ $BUILD_WINDOWS_EXE -eq 1 ]; then
     cd $ROOT_DIRECTORY
     # Reset the number of threads. The mex files for matlab/octave (32bits and 64bits) will be built
     # in parallel, so we need to account for the number of tasks and lower the value of NTHREADS.
-    NTASKS=5
+    NTASKS=6
     NTHREADS=$(( $NTHREADS/$NTASKS ))
     # Create TMP folder
     mkdir -p tmp
